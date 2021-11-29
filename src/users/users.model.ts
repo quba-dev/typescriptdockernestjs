@@ -4,6 +4,7 @@ import {Role} from "../roles/roles.model";
 import {UserRoles} from "../roles/user-roles.model";
 
 interface UserCreationAttrs {
+    username: string;
     email: string;
     password: string;
 }
@@ -14,6 +15,9 @@ export class User extends Model<User, UserCreationAttrs> {
     @ApiProperty({example: '1', description: 'Уникальный индентификатор'})
     @Column({type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true})
     id: number;
+    @ApiProperty({example: 'user', description: 'Логин'})
+    @Column({type: DataType.STRING, unique: true, allowNull: false})
+    username: string;
     @ApiProperty({example: 'user@mail.ru', description: 'Почта'})
     @Column({type: DataType.STRING, unique: true, allowNull: false})
     email: string;
